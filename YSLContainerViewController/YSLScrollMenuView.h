@@ -27,6 +27,10 @@
 @property (nonatomic, strong) UIColor                      *itemSelectedTitleColor;
 @property (nonatomic, strong) UIColor                      *itemIndicatorColor;
 
+@property (nonatomic, assign) CGFloat                      kYSLScrollMenuViewWidth;
+@property (nonatomic, assign) CGFloat                      kYSLScrollMenuViewMargin;
+@property (nonatomic, assign) CGFloat                      kYSLIndicatorHeight;
+
 - (void)setShadowView;
 
 - (void)setIndicatorViewFrameWithRatio:(CGFloat)ratio isNextItem:(BOOL)isNextItem toIndex:(NSInteger)toIndex;

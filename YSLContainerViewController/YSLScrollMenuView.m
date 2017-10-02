@@ -8,9 +8,9 @@
 
 #import "YSLScrollMenuView.h"
 
-static const CGFloat kYSLScrollMenuViewWidth  = 90;
-static const CGFloat kYSLScrollMenuViewMargin = 10;
-static const CGFloat kYSLIndicatorHeight      = 3;
+//static const CGFloat kYSLScrollMenuViewWidth  = 90;
+//static const CGFloat kYSLScrollMenuViewMargin = 10;
+//static const CGFloat kYSLIndicatorHeight      = 3;
 
 @interface YSLScrollMenuView ()
 
@@ -21,12 +21,12 @@ static const CGFloat kYSLIndicatorHeight      = 3;
 @implementation YSLScrollMenuView
 
 #pragma mark -- LifeCycle
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if (self == nil) {
-        retrun nil;
+        return nil;
     }
     
     // default
@@ -104,7 +104,7 @@ static const CGFloat kYSLIndicatorHeight      = 3;
         
         [itemTitleArray enumerateObjectsUsingBlock:^(NSString *titleString, NSUInteger idx, BOOL *stop) {
             
-            CGRect frame = CGRectMake(0, 0, kYSLScrollMenuViewWidth, CGRectGetHeight(self.frame));
+            CGRect frame = CGRectMake(0, 0, _kYSLScrollMenuViewWidth, CGRectGetHeight(self.frame));
             
             UILabel *itemView = [[UILabel alloc] initWithFrame:frame];
             
@@ -130,7 +130,7 @@ static const CGFloat kYSLIndicatorHeight      = 3;
         // indicator
         _indicatorView = [[UIView alloc]init];
         
-        _indicatorView.frame           = CGRectMake(10, _scrollView.frame.size.height - kYSLIndicatorHeight, kYSLScrollMenuViewWidth, kYSLIndicatorHeight);
+        _indicatorView.frame           = CGRectMake(10, _scrollView.frame.size.height - _kYSLIndicatorHeight, _kYSLScrollMenuViewWidth, _kYSLIndicatorHeight);
         _indicatorView.backgroundColor = self.itemIndicatorColor;
         
         [_scrollView addSubview:_indicatorView];
@@ -143,15 +143,15 @@ static const CGFloat kYSLIndicatorHeight      = 3;
     CGFloat indicatorX = 0.0;
     
     if (isNextItem) {
-        indicatorX = ((kYSLScrollMenuViewMargin + kYSLScrollMenuViewWidth) * ratio ) + (toIndex * kYSLScrollMenuViewWidth) + ((toIndex + 1) * kYSLScrollMenuViewMargin);
+        indicatorX = ((_kYSLScrollMenuViewMargin + _kYSLScrollMenuViewWidth) * ratio ) + (toIndex * _kYSLScrollMenuViewWidth) + ((toIndex + 1) * _kYSLScrollMenuViewMargin);
     } else {
-        indicatorX =  ((kYSLScrollMenuViewMargin + kYSLScrollMenuViewWidth) * (1 - ratio) ) + (toIndex * kYSLScrollMenuViewWidth) + ((toIndex + 1) * kYSLScrollMenuViewMargin);
+        indicatorX =  ((_kYSLScrollMenuViewMargin + _kYSLScrollMenuViewWidth) * (1 - ratio) ) + (toIndex * _kYSLScrollMenuViewWidth) + ((toIndex + 1) * _kYSLScrollMenuViewMargin);
     }
     
-    if (indicatorX < kYSLScrollMenuViewMargin || indicatorX > self.scrollView.contentSize.width - (kYSLScrollMenuViewMargin + kYSLScrollMenuViewWidth)) {
+    if (indicatorX < _kYSLScrollMenuViewMargin || indicatorX > self.scrollView.contentSize.width - (_kYSLScrollMenuViewMargin + _kYSLScrollMenuViewWidth)) {
         return;
     }
-    _indicatorView.frame = CGRectMake(indicatorX, _scrollView.frame.size.height - kYSLIndicatorHeight, kYSLScrollMenuViewWidth, kYSLIndicatorHeight);
+    _indicatorView.frame = CGRectMake(indicatorX, _scrollView.frame.size.height - _kYSLIndicatorHeight, _kYSLScrollMenuViewWidth, _kYSLIndicatorHeight);
     //  NSLog(@"retio : %f",_indicatorView.frame.origin.x);
 }
 
@@ -202,16 +202,16 @@ static const CGFloat kYSLIndicatorHeight      = 3;
 {
     [super layoutSubviews];
     
-    CGFloat __block x = kYSLScrollMenuViewMargin;
+    CGFloat __block x = _kYSLScrollMenuViewMargin;
     
     [self.itemViewArray enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        CGFloat width = kYSLScrollMenuViewWidth;
+        CGFloat width = _kYSLScrollMenuViewWidth;
         
         UIView *itemView = view;
         
         itemView.frame = CGRectMake(x, 0, width, self.scrollView.frame.size.height);
         
-        x += width + kYSLScrollMenuViewMargin;
+        x += width + _kYSLScrollMenuViewMargin;
     }];
     
     self.scrollView.contentSize = CGSizeMake(x, self.scrollView.frame.size.height);

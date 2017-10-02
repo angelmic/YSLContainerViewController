@@ -22,7 +22,7 @@ static const CGFloat kYSLScrollMenuViewHeight = 40;
 @implementation YSLContainerViewController
 
 #pragma mark -- LifeCycle
-- (id)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController
+- (instancetype)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController
 {
     self = [super init];
     
@@ -95,19 +95,8 @@ static const CGFloat kYSLScrollMenuViewHeight = 40;
     }];
     
     // meunView
-    _menuView = [[YSLScrollMenuView alloc] initWithFrame:CGRectMake(0, _topBarHeight, self.view.frame.size.width, kYSLScrollMenuViewHeight)];
-    
-    _menuView.backgroundColor    = [UIColor clearColor];
-    _menuView.delegate           = self;
-    _menuView.viewbackgroudColor = self.menuBackGroudColor;
-    _menuView.itemfont           = self.menuItemFont;
-    _menuView.itemTitleColor     = self.menuItemTitleColor;
-    _menuView.itemIndicatorColor = self.menuIndicatorColor;
-    
-    _menuView.scrollView.scrollsToTop = NO;
-    
-    [_menuView setItemTitleArray:self.titles];
-    
+    _menuView = [self setupMenuView];
+
     [self.view addSubview:_menuView];
     
     [_menuView setShadowView];
@@ -116,14 +105,13 @@ static const CGFloat kYSLScrollMenuViewHeight = 40;
 }
 
 #pragma mark -- private
-
 - (void)setChildViewControllerWithCurrentIndex:(NSInteger)currentIndex
 {
     [self.childControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[UIViewController class]]) {
             UIViewController *controller = (UIViewController*)obj;
             
-            if (i == currentIndex) {
+            if (idx == currentIndex) {
                 [controller willMoveToParentViewController:self];
                 [self addChildViewController:controller];
                 [controller didMoveToParentViewController:self];
@@ -135,6 +123,30 @@ static const CGFloat kYSLScrollMenuViewHeight = 40;
         }
     }];
 }
+
+#pragma mark -- public
+- (YSLScrollMenuView *)setupMenuView
+{
+    YSLScrollMenuView *menuView = [[YSLScrollMenuView alloc] initWithFrame:CGRectMake(0, _topBarHeight, self.view.frame.size.width, kYSLScrollMenuViewHeight)];
+    
+    menuView.kYSLScrollMenuViewWidth  = 90.0;
+    menuView.kYSLIndicatorHeight      = 3.0;
+    menuView.kYSLScrollMenuViewMargin = 10.0;
+    
+    menuView.backgroundColor    = [UIColor clearColor];
+    menuView.delegate           = self;
+    menuView.viewbackgroudColor = self.menuBackGroudColor;
+    menuView.itemfont           = self.menuItemFont;
+    menuView.itemTitleColor     = self.menuItemTitleColor;
+    menuView.itemIndicatorColor = self.menuIndicatorColor;
+    
+    menuView.scrollView.scrollsToTop = NO;
+    
+    [menuView setItemTitleArray:self.titles];
+    
+    return menuView;
+}
+
 #pragma mark -- YSLScrollMenuView Delegate
 
 - (void)scrollMenuViewSelectedIndex:(NSInteger)index

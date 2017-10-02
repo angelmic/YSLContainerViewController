@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class YSLScrollMenuView;
+
 @protocol YSLContainerViewControllerDelegate <NSObject>
 
 - (void)containerViewItemIndex:(NSInteger)index currentController:(UIViewController *)controller;
@@ -28,6 +30,8 @@
 @property (nonatomic, strong) UIColor *menuBackGroudColor;
 @property (nonatomic, strong) UIColor *menuIndicatorColor;
 
-- (id)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController;
+- (instancetype)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController;
+
+- (YSLScrollMenuView *)setupMenuView;
 
 @end
