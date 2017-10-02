@@ -18,7 +18,7 @@
 
 @property (nonatomic, weak) id <YSLContainerViewControllerDelegate> delegate;
 
-@property (nonatomic, strong) UIScrollView *contentScrollView;
+@property (nonatomic, strong) UIScrollView             *contentScrollView;
 @property (nonatomic, strong, readonly) NSMutableArray *titles;
 @property (nonatomic, strong, readonly) NSMutableArray *childControllers;
 
@@ -28,8 +28,6 @@
 @property (nonatomic, strong) UIColor *menuBackGroudColor;
 @property (nonatomic, strong) UIColor *menuIndicatorColor;
 
-- (id)initWithControllers:(NSArray *)controllers
-             topBarHeight:(CGFloat)topBarHeight
-     parentViewController:(UIViewController *)parentViewController;
+- (id)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController;
 
 @end
