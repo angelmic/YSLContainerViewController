@@ -171,7 +171,7 @@
         if (i == currentIndex) {
             label.alpha = 0.0;
             
-            [UIView animateWithDuration:0.75
+            [UIView animateWithDuration:0.25
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction
                              animations:^{

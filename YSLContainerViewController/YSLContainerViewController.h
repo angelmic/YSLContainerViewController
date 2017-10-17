@@ -33,5 +33,6 @@
 - (instancetype)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController;
 
 - (YSLScrollMenuView *)setupMenuView;
+- (void)scrollMenuViewSelectedIndex:(NSInteger)index;
 
 @end
