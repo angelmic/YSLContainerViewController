@@ -57,8 +57,14 @@
     YSLContainerViewController *containerVC = [[YSLContainerViewController alloc]initWithControllers:@[playListVC,artistVC,sampleVC1,sampleVC2,sampleVC3]
                                                                                         topBarHeight:statusHeight + navigationHeight
                                                                                 parentViewController:self];
+    
+    
     containerVC.delegate = self;
-    containerVC.menuItemFont = [UIFont fontWithName:@"Futura-Medium" size:16];
+    
+    containerVC.menuItemFont        = [UIFont fontWithName:@"Futura-Medium" size:16];
+    containerVC.menuViewHeight      = 90;
+    containerVC.menuIndicatorHeight = 3.0;
+    containerVC.scrollMenuViewWidth = 150;
     
     [self.view addSubview:containerVC.view];
 }

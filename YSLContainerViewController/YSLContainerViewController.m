@@ -9,7 +9,6 @@
 #import "YSLContainerViewController.h"
 #import "YSLScrollMenuView.h"
 
-static const CGFloat kYSLScrollMenuViewHeight = 40;
 
 @interface YSLContainerViewController () <UIScrollViewDelegate, YSLScrollMenuViewDelegate>
 
@@ -65,9 +64,9 @@ static const CGFloat kYSLScrollMenuViewHeight = 40;
     _contentScrollView = [[UIScrollView alloc] init];
     
     _contentScrollView.frame = CGRectMake(0,
-                                          _topBarHeight + kYSLScrollMenuViewHeight,
+                                          _topBarHeight + _menuViewHeight,
                                           self.view.frame.size.width,
-                                          self.view.frame.size.height - (_topBarHeight + kYSLScrollMenuViewHeight));
+                                          self.view.frame.size.height - (_topBarHeight + _menuViewHeight));
     
     _contentScrollView.backgroundColor = [UIColor clearColor];
     _contentScrollView.pagingEnabled   = YES;
@@ -127,10 +126,10 @@ static const CGFloat kYSLScrollMenuViewHeight = 40;
 #pragma mark -- public
 - (YSLScrollMenuView *)setupMenuView
 {
-    YSLScrollMenuView *menuView = [[YSLScrollMenuView alloc] initWithFrame:CGRectMake(0, _topBarHeight, self.view.frame.size.width, kYSLScrollMenuViewHeight)];
+    YSLScrollMenuView *menuView = [[YSLScrollMenuView alloc] initWithFrame:CGRectMake(0, _topBarHeight, self.view.frame.size.width, _menuViewHeight)];
     
-    menuView.kYSLScrollMenuViewWidth  = 90.0;
-    menuView.kYSLIndicatorHeight      = 3.0;
+    menuView.kYSLScrollMenuViewWidth  = self.scrollMenuViewWidth;
+    menuView.kYSLIndicatorHeight      = self.menuIndicatorHeight;
     menuView.kYSLScrollMenuViewMargin = 10.0;
     
     menuView.backgroundColor    = [UIColor clearColor];

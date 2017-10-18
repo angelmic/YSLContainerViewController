@@ -30,6 +30,10 @@
 @property (nonatomic, strong) UIColor *menuBackGroudColor;
 @property (nonatomic, strong) UIColor *menuIndicatorColor;
 
+@property (nonatomic, assign) CGFloat menuViewHeight;
+@property (nonatomic, assign) CGFloat scrollMenuViewWidth;
+@property (nonatomic, assign) CGFloat menuIndicatorHeight;
+
 - (instancetype)initWithControllers:(NSArray *)controllers topBarHeight:(CGFloat)topBarHeight parentViewController:(UIViewController *)parentViewController;
 
 - (YSLScrollMenuView *)setupMenuView;
